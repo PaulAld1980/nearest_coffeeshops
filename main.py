@@ -75,15 +75,12 @@ def create_map(user_coords, coffee_shops):
 
 def main():
     load_dotenv()
-    apikey = os.getenv("apikey")
+    apikey = os.getenv("API_KEY")
 
     user_location = input("Где вы находитесь? ")
     user_coords = fetch_coordinates(apikey, user_location)
 
     nearest_shops = get_coffee_shops(user_coords)
-
-    for shop in nearest_shops:
-        print(shop['title'])
 
     coffee_map = create_map(user_coords, nearest_shops)
     coffee_map.save("coffee_map.html")
